@@ -3,7 +3,7 @@
 pkgname=faenza-eleven-icon-theme
 pkgver=1.0.0
 pkgrel=1
-pkgdesc="An extension for Faenza-Dark icon theme."
+pkgdesc="An extension for Faenza-Dark icon theme"
 url="https://github.com/november-eleven/Faenza-Eleven"
 license=('GPL')
 arch=('any')
