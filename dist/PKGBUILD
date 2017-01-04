@@ -9,7 +9,7 @@ license=('GPL')
 arch=('any')
 depends=('faenza-icon-theme')
 makedepends=('git')
-source=($pkgname::git+https://github.com/november-eleven/Faenza-Eleven.git#commit=32cf4ffe066289d83c9c238cdbebcc64a608a340)
+source=($pkgname::git+https://github.com/november-eleven/Faenza-Eleven.git#tag=v$pkgver)
 sha256sums=('SKIP')
 
 package() {
