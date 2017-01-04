@@ -1,0 +1,19 @@
+[Icon Theme]
+Name=Faenza-Eleven
+Inherits=Faenza-Dark,Faenza
+Comment=Extension for Faenza-Dark
+Directories=apps/48,apps/scalable
+
+[scalable/apps]
+MinSize=64
+Size=96
+MaxSize=256
+Context=Applications
+Type=Scalable
+
+[scalable/status]
+MinSize=64
+Size=96
+MaxSize=256
+Context=Status
+Type=Scalable
