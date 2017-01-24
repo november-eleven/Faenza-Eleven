@@ -1,8 +1,8 @@
 # Maintainer: november-eleven <archlinux@november-eleven.fr>
 
 pkgname=faenza-eleven-icon-theme
-pkgver=1.2.0
-pkgrel=2
+pkgver=1.3.0
+pkgrel=1
 pkgdesc="An extension for Faenza-Dark icon theme"
 url="https://github.com/november-eleven/Faenza-Eleven"
 license=('GPL')
