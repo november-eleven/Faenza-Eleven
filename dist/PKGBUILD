@@ -2,7 +2,7 @@
 
 pkgname=faenza-eleven-icon-theme
 pkgver=1.2.0
-pkgrel=1
+pkgrel=2
 pkgdesc="An extension for Faenza-Dark icon theme"
 url="https://github.com/november-eleven/Faenza-Eleven"
 license=('GPL')
@@ -12,12 +12,73 @@ makedepends=('git')
 source=($pkgname::git+https://github.com/november-eleven/Faenza-Eleven.git#tag=v$pkgver)
 sha256sums=('SKIP')
 
+prepare() {
+
+    cd "${srcdir}/faenza-eleven-icon-theme/src"
+
+    icons=(
+        "apps/atom"
+        "status/ac-adapter"
+        "status/ac-adapter"
+        "status/ac-adapter-symbolic"
+        "status/battery-caution-charging"
+        "status/battery-caution"
+        "status/battery-empty-charging"
+        "status/battery-empty"
+        "status/battery-full-charged"
+        "status/battery-full-charging"
+        "status/battery-full"
+        "status/battery-good-charging"
+        "status/battery-good"
+        "status/battery-low-charging"
+        "status/battery-low"
+        "status/battery-missing"
+        "status/xfce4-power-manager-settings"
+        "status/xfce4-pulseaudio-plugin"
+    )
+
+    sizes="16 22 24 32 48 64 96"
+
+    for size in ${sizes}
+    do
+
+        prefix="${size}x${size}"
+        mkdir -p "${prefix}/apps" "${prefix}/status"
+
+        cat <<EOF >> index.theme
+
+[${prefix}/app]
+Size=${size}
+Context=Applications
+Type=fixed
+
+[${prefix}/status]
+Size=${size}
+Context=Status
+Type=fixed
+EOF
+
+        for i in ${icons[@]}
+        do
+            echo "[create] ${prefix}/${i}.png"
+            inkscape -z -e "${prefix}/${i}.png" -w "${size}" -h "${size}" "scalable/${i}".svg >/dev/null
+        done
+
+    done
+
+}
+
 package() {
 
     cd faenza-eleven-icon-theme/src
 
     install -dm755 "${pkgdir}/usr/share/icons/Faenza-Eleven"
     install -Dm644 index.theme "${pkgdir}/usr/share/icons/Faenza-Eleven/"
-    cp -dr --no-preserve='ownership' scalable "${pkgdir}/usr/share/icons/Faenza-Eleven/"
+
+    sizes="16x16 22x22 24x24 32x32 48x48 64x64 96x96 scalable"
+    for size in ${sizes}
+    do
+        cp -dr --no-preserve='ownership' "${size}" "${pkgdir}/usr/share/icons/Faenza-Eleven/"
+    done
 
 }
